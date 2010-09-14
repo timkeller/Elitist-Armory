@@ -265,6 +265,7 @@ module Armory
 		end
 		
 		# Handle figuring out what node to use
+		# This is probably some of the wacky-ist code I've written in a while, it uses memcached because it was a quick way to let workers from multiple servers communicate without touching the database.
 		def self.rotate(node_list)
 			now = self.db_time_now.to_f
 			ready_soonest, ready_node = nil, nil
